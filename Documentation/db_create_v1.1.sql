@@ -76,7 +76,6 @@ DROP TABLE IF EXISTS `Bill-manager`.`Bills` ;
 CREATE TABLE IF NOT EXISTS `Bill-manager`.`Bills` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `billNumber` VARCHAR(50) NOT NULL,
-  `receiver` VARCHAR(200) NOT NULL,
   `date` DATE NOT NULL,
   `currency` VARCHAR(45) NOT NULL,
   `amountHT` INT NOT NULL,
