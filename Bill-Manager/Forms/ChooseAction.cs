@@ -28,18 +28,22 @@ namespace Bill_Manager
             switch (action.Name)
             {
                 case "cmdImport":
+                    //TODO Replace this to connect next action with bill import form
                     MessageBox.Show("Importer facture");
                     break;
 
                 case "cmdBiller":
+                    //TODO Replace this to connect next action with provider import form
                     MessageBox.Show("Ajouter fournisseur");
                     break;
 
                 case "cmdConsultBills":
+                    //TODO Replace this to connect next action with bill consultation form
                     MessageBox.Show("Voir mes factures");
                     break;
 
                 case "cmdNewUser":
+                    //TODO Replace this to connect next action with new user creatrion form
                     MessageBox.Show("Ajouter utilisateur");
                     break;
 

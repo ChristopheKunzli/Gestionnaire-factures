@@ -43,6 +43,7 @@ namespace Bill_Manager
                     nextAction = new ChooseAction(user);
                     break;
                 case false:
+                    //TODO (Program.cs) Replace this to connect next action with bill consultation form
                     MessageBox.Show("pas admin");
                     break;
                 default:
