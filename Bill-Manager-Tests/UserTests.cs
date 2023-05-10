@@ -18,7 +18,7 @@ namespace Bill_Manager_Tests
         [Test]
         public void toString_Success()
         {
-            Assert.AreEqual(user.ToString(), "jean paul");
+            Assert.AreEqual("jean paul", user.ToString());
         }
 
         [Test]
@@ -30,7 +30,6 @@ namespace Bill_Manager_Tests
             Assert.False(BC.Verify(inputPassword, passwordHash));
         }
 
-
         [Test]
         public void passwordCheck_Success()
         {
@@ -38,6 +37,22 @@ namespace Bill_Manager_Tests
             string passwordHash = user.Password;
 
             Assert.True(BC.Verify(inputPassword, passwordHash));
+        }
+
+        [Test]
+        public void defaultID_Failure()
+        {
+            User newUser = new User("t", "t", "t.t@gmail.com", BC.HashPassword(""), true, true);
+
+            Assert.AreNotEqual(1, newUser.Id);
+        }
+
+        [Test]
+        public void defaultID_Success()
+        {
+            User newUser = new User("t", "t", "t.t@gmail.com", BC.HashPassword(""), true, true);
+
+            Assert.AreEqual(-1, newUser.Id);
         }
     }
 }
