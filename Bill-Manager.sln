@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bill-Manager", "Bill-Manager\Bill-Manager.csproj", "{9F14DF97-D3E2-4A90-9DF4-505E83161EA8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bill-Manager-Tests", "Bill-Manager-Tests\Bill-Manager-Tests.csproj", "{50BBE0EA-23BD-4C29-974F-50D7360C92DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9F14DF97-D3E2-4A90-9DF4-505E83161EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F14DF97-D3E2-4A90-9DF4-505E83161EA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F14DF97-D3E2-4A90-9DF4-505E83161EA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50BBE0EA-23BD-4C29-974F-50D7360C92DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50BBE0EA-23BD-4C29-974F-50D7360C92DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50BBE0EA-23BD-4C29-974F-50D7360C92DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50BBE0EA-23BD-4C29-974F-50D7360C92DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

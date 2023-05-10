@@ -15,7 +15,8 @@ namespace Bill_Manager
 {
     public partial class frmLogin : Form
     {
-        public User User;
+        private User user;
+        public User User { get { return user; } }
 
         public frmLogin()
         {
@@ -41,9 +42,9 @@ namespace Bill_Manager
             }
 
             ConnectionDB connection = new ConnectionDB();
-            this.User = connection.GetUser(mail);
+            user = connection.GetUser(mail);
 
-            if (this.User == null)
+            if (user == null)
             {
                 MessageBox.Show("Email ou mot de passe erroné");
                 return;
@@ -52,7 +53,33 @@ namespace Bill_Manager
             if (!BC.Verify(password, User.Password))
             {
                 MessageBox.Show("Mot de passe incorrecte");
-                this.User = null;
+                user = null;
+                return;
+            }
+
+            if(!User.HasChangedPassword)
+            {
+                Form changePass = new ChangePassword(user);
+
+                //Determine what to do when the changePassword form is closed based on it's dialog result
+                changePass.FormClosing += delegate
+                {
+                    if (changePass.DialogResult == DialogResult.OK)
+                    {
+                        //If user successfully changed their password, go to main form
+                        DialogResult = DialogResult.OK;
+                        Close();
+                    }
+                    else
+                    {
+                        this.Show();
+                        user = null;
+                    }
+                };
+
+                changePass.Show();
+                this.Hide();
+
                 return;
             }
 

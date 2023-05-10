@@ -14,12 +14,21 @@ namespace Bill_Manager.Database
     {
         public ConnectionDB() { }
 
+        /// <summary>
+        /// Creates a connection to the database
+        /// </summary>
+        /// <returns></returns>
         private MySqlConnection openConnection()
         {
             string connectionString = "SERVER=127.0.0.1; PORT=3306; DATABASE=bill-manager; UID=client_bill-manager; PASSWORD=Pa$$w0rd";
             return new MySqlConnection(connectionString);
         }
 
+        /// <summary>
+        /// Fetches a user from the database
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns>the user or null if not present in databse</returns>
         public User GetUser(string email)
         {
             User user = null;
@@ -69,5 +78,41 @@ namespace Bill_Manager.Database
             return user;
         }
 
+        /// <summary>
+        /// Change a user's password
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="newPassword"></param>
+        public void UpdateUserPassword(User user, string newPassword)
+        {
+            using (MySqlConnection connection = openConnection())
+            {
+                try
+                {
+                    connection.Open();
+                    MySqlCommand cmdUpdate = connection.CreateCommand();
+
+                    //Change the password hash stored in DB
+                    cmdUpdate.CommandText = "UPDATE users SET password=@pass WHERE email=@mail";
+
+                    cmdUpdate.Parameters.AddWithValue("@pass", newPassword);
+                    cmdUpdate.Parameters.AddWithValue("@mail", user.Email);
+
+                    cmdUpdate.ExecuteNonQuery();
+
+                    //Indicate that this user has now changed password
+                    cmdUpdate.CommandText = "UPDATE users SET hasChangedPassword=1 WHERE email=@mail";
+                    cmdUpdate.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
     }
 }

@@ -28,6 +28,7 @@ namespace Bill_Manager
                 return;
             }
 
+            //Determine what to do next based on user's privileges
             Form nextAction;
             User user = login.User;
 
@@ -44,6 +45,7 @@ namespace Bill_Manager
                     break;
             }
 
+            //Destroy login form
             login.Dispose();
             login = null;
             
