@@ -16,7 +16,38 @@ namespace Bill_Manager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            frmLogin login = new frmLogin();
+            Application.Run(login);
+
+            DialogResult result = login.DialogResult;
+
+            //End if the user closed the form without logging in
+            if (result != DialogResult.OK)
+            {
+                return;
+            }
+
+            Form nextAction;
+            User user = login.User;
+
+            switch (login.User.IsAdmin)
+            {
+                case true:
+                    MessageBox.Show("admin");
+                    break;
+                case false:
+                    MessageBox.Show("pas admin");
+                    break;
+                default:
+                    MessageBox.Show("erreur");
+                    break;
+            }
+
+            login.Dispose();
+            login = null;
+            
+            //Application.Run(nextAction);
         }
     }
 }
