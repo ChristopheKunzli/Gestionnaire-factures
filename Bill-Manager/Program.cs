@@ -28,14 +28,19 @@ namespace Bill_Manager
                 return;
             }
 
-            //Determine what to do next based on user's privileges
-            Form nextAction;
             User user = login.User;
 
-            switch (login.User.IsAdmin)
+            //Destroy login form
+            login.Dispose();
+            login = null;
+
+            //Determine what to do next based on user's privileges
+            Form nextAction = null;
+
+            switch (user.IsAdmin)
             {
                 case true:
-                    MessageBox.Show("admin");
+                    nextAction = new ChooseAction(user);
                     break;
                 case false:
                     MessageBox.Show("pas admin");
@@ -44,12 +49,8 @@ namespace Bill_Manager
                     MessageBox.Show("erreur");
                     break;
             }
-
-            //Destroy login form
-            login.Dispose();
-            login = null;
             
-            //Application.Run(nextAction);
+            Application.Run(nextAction);
         }
     }
 }
