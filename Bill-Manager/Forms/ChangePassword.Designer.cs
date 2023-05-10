@@ -116,8 +116,10 @@
             this.Controls.Add(this.txtConfirmNewPassword);
             this.Controls.Add(this.txtNewPassword);
             this.Controls.Add(this.textBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ChangePassword";
-            this.Text = "ChangePassword";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Changer mot de passe";
             this.ResumeLayout(false);
             this.PerformLayout();
 
