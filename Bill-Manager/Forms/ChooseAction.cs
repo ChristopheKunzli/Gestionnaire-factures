@@ -25,6 +25,7 @@ namespace Bill_Manager
             Form nextAction = null;
 
             Button action = (Button)sender;
+               
             switch (action.Name)
             {
                 case "cmdImport":
@@ -32,12 +33,12 @@ namespace Bill_Manager
                     MessageBox.Show("Importer facture");
                     break;
 
-                case "cmdBiller":
+                case "cmdProvider":
                     //TODO Replace this to connect next action with provider import form
                     MessageBox.Show("Ajouter fournisseur");
                     break;
 
-                case "cmdConsultBills":
+                case "cmdconsultBills":
                     //TODO Replace this to connect next action with bill consultation form
                     MessageBox.Show("Voir mes factures");
                     break;

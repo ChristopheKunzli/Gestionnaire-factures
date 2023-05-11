@@ -13,12 +13,12 @@ using BC = BCrypt.Net.BCrypt;
 
 namespace Bill_Manager
 {
-    public partial class frmLogin : Form
+    public partial class Login : Form
     {
         private User user;
         public User User { get { return user; } }
 
-        public frmLogin()
+        public Login()
         {
             InitializeComponent();
         }

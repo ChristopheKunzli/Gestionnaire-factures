@@ -17,22 +17,22 @@ namespace Bill_Manager
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            frmLogin login = new frmLogin();
-            Application.Run(login);
 
-            DialogResult result = login.DialogResult;
+            DialogResult result = DialogResult.None;
+            User user = null;
+
+            using (Login login = new Login())
+            {
+                Application.Run(login);
+                result = login.DialogResult;
+                user = login.User;
+            }
 
             //End if the user closed the form without logging in
             if (result != DialogResult.OK)
             {
                 return;
             }
-
-            User user = login.User;
-
-            //Destroy login form
-            login.Dispose();
-            login = null;
 
             //Determine what to do next based on user's privileges
             Form nextAction = null;
@@ -50,7 +50,7 @@ namespace Bill_Manager
                     MessageBox.Show("erreur");
                     break;
             }
-            
+
             Application.Run(nextAction);
         }
     }
