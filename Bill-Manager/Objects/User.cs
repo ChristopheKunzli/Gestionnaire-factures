@@ -17,12 +17,12 @@ namespace Bill_Manager
         private bool hasChangedPassword;
 
         public int Id { get { return id; } }
-        public string FirstName { get { return firstName;} }
-        public string LastName { get { return lastName;} }
-        public string Email { get { return email;} }
-        public string Password { get { return password;} }
-        public bool IsAdmin { get {  return isAdmin;} }
-        public bool HasChangedPassword { get {  return hasChangedPassword; } }
+        public string FirstName { get { return firstName; } }
+        public string LastName { get { return lastName; } }
+        public string Email { get { return email; } }
+        public string Password { get { return password; } }
+        public bool IsAdmin { get { return isAdmin; } }
+        public bool HasChangedPassword { get { return hasChangedPassword; } }
 
         public User(int id, string firstName, string lastName, string email, string password, bool isAdmin, bool hasChangedPassword)
         {

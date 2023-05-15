@@ -25,7 +25,7 @@ namespace Bill_Manager
             Form nextAction = null;
 
             Button action = (Button)sender;
-               
+
             switch (action.Name)
             {
                 case "cmdImport":
@@ -43,8 +43,7 @@ namespace Bill_Manager
                     break;
 
                 case "cmdNewUser":
-                    //TODO Replace this to connect next action with new user creatrion form
-                    MessageBox.Show("Ajouter utilisateur");
+                    nextAction = new AddUser();
                     break;
 
                 case "cmdExit":
@@ -71,7 +70,7 @@ namespace Bill_Manager
         private void ChooseAction_Load(object sender, EventArgs e)
         {
             lblWelcome.Text = $"Welcome {user}";
-            lblWelcome.Location = new Point((Size.Width - lblWelcome.Size.Width) / 2 -10, lblWelcome.Location.Y);
+            lblWelcome.Location = new Point((Size.Width - lblWelcome.Size.Width) / 2 - 10, lblWelcome.Location.Y);
         }
     }
 }

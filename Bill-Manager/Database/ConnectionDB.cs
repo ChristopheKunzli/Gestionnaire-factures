@@ -79,6 +79,44 @@ namespace Bill_Manager.Database
         }
 
         /// <summary>
+        /// Creates a new user in database
+        /// </summary>
+        /// <param name="user"></param>
+        public void AddUser(User user)
+        {
+            using (MySqlConnection connection = openConnection())
+            {
+                try
+                {
+                    string cmdText =
+                        "INSERT INTO users (email, firstName, lastName, password, isAdmin, hasChangedPassword) " +
+                        "VALUES (@mail, @first, @last, @pass, @admin, @changed)";
+
+                    MySqlCommand cmd = new MySqlCommand(cmdText, connection); ;
+                    cmd.Parameters.AddWithValue("@mail", user.Email);
+                    cmd.Parameters.AddWithValue("@first", user.FirstName);
+                    cmd.Parameters.AddWithValue("@last", user.LastName);
+                    cmd.Parameters.AddWithValue("@pass", user.Password);
+                    cmd.Parameters.AddWithValue("@admin", user.IsAdmin);
+                    cmd.Parameters.AddWithValue("@changed", user.HasChangedPassword);
+
+                    connection.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        /// <summary>
         /// Changes a user's password
         /// </summary>
         /// <param name="user"></param>
