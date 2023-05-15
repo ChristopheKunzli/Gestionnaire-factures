@@ -34,8 +34,7 @@ namespace Bill_Manager
                     break;
 
                 case "cmdProvider":
-                    //TODO Replace this to connect next action with provider import form
-                    MessageBox.Show("Ajouter fournisseur");
+                    nextAction = new AddProvider();
                     break;
 
                 case "cmdconsultBills":

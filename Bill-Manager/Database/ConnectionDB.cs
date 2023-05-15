@@ -79,7 +79,7 @@ namespace Bill_Manager.Database
         }
 
         /// <summary>
-        /// Change a user's password
+        /// Changes a user's password
         /// </summary>
         /// <param name="user"></param>
         /// <param name="newPassword"></param>
@@ -103,6 +103,45 @@ namespace Bill_Manager.Database
                     //Indicate that this user has now changed password
                     cmdUpdate.CommandText = "UPDATE users SET hasChangedPassword=1 WHERE email=@mail";
                     cmdUpdate.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Adds a new provider to the database
+        /// </summary>
+        /// <param name="provider"></param>
+        public void AddProvider(Provider provider)
+        {
+            using (MySqlConnection connection = openConnection())
+            {
+                try
+                {
+                    string cmdText =
+                        "INSERT INTO providers (name, email, phoneNumber, roadName, number, zip, city) " +
+                        "VALUES (@name, @email, @phone, @roadName, @num, @zip, @city)";
+
+                    MySqlCommand cmd = new MySqlCommand(cmdText, connection); ;
+                    cmd.Parameters.AddWithValue("@name", provider.Name);
+                    cmd.Parameters.AddWithValue("@email", provider.Email);
+                    cmd.Parameters.AddWithValue("@phone", provider.Phone);
+                    cmd.Parameters.AddWithValue("@roadName", provider.RoadName);
+                    cmd.Parameters.AddWithValue("@num", provider.Number);
+                    cmd.Parameters.AddWithValue("@zip", provider.Zip);
+                    cmd.Parameters.AddWithValue("@city", provider.City);
+
+                    connection.Open();
+
+                    cmd.ExecuteNonQuery();
+
                 }
                 catch (Exception ex)
                 {
