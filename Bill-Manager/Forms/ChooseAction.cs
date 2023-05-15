@@ -29,8 +29,7 @@ namespace Bill_Manager
             switch (action.Name)
             {
                 case "cmdImport":
-                    //TODO Replace this to connect next action with bill import form
-                    MessageBox.Show("Importer facture");
+                    nextAction = new ImportBill();
                     break;
 
                 case "cmdProvider":
