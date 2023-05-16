@@ -36,7 +36,7 @@
             this.cmbUser = new System.Windows.Forms.ComboBox();
             this.cmbProvider = new System.Windows.Forms.ComboBox();
             this.cmbType = new System.Windows.Forms.ComboBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.rtxtStorage = new System.Windows.Forms.RichTextBox();
             this.cmdFile = new System.Windows.Forms.Button();
             this.cmdAdd = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
@@ -48,7 +48,7 @@
             this.lblUser = new System.Windows.Forms.Label();
             this.lblProvider = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblStorage = new System.Windows.Forms.Label();
             this.lblFile = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -112,13 +112,14 @@
             this.cmbType.Size = new System.Drawing.Size(200, 21);
             this.cmbType.TabIndex = 7;
             // 
-            // richTextBox1
+            // rtxtStorage
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(279, 30);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(448, 179);
-            this.richTextBox1.TabIndex = 8;
-            this.richTextBox1.Text = "";
+            this.rtxtStorage.Location = new System.Drawing.Point(279, 30);
+            this.rtxtStorage.MaxLength = 500;
+            this.rtxtStorage.Name = "rtxtStorage";
+            this.rtxtStorage.Size = new System.Drawing.Size(448, 179);
+            this.rtxtStorage.TabIndex = 8;
+            this.rtxtStorage.Text = "";
             // 
             // cmdFile
             // 
@@ -126,8 +127,9 @@
             this.cmdFile.Name = "cmdFile";
             this.cmdFile.Size = new System.Drawing.Size(132, 23);
             this.cmdFile.TabIndex = 9;
-            this.cmdFile.Text = "Sélectionner fichier";
+            this.cmdFile.Text = "Sélectionner fichier*";
             this.cmdFile.UseVisualStyleBackColor = true;
+            this.cmdFile.Click += new System.EventHandler(this.cmdFile_Click);
             // 
             // cmdAdd
             // 
@@ -154,9 +156,9 @@
             this.lblBillNumber.AutoSize = true;
             this.lblBillNumber.Location = new System.Drawing.Point(13, 13);
             this.lblBillNumber.Name = "lblBillNumber";
-            this.lblBillNumber.Size = new System.Drawing.Size(95, 13);
+            this.lblBillNumber.Size = new System.Drawing.Size(99, 13);
             this.lblBillNumber.TabIndex = 12;
-            this.lblBillNumber.Text = "Numéro de facture";
+            this.lblBillNumber.Text = "Numéro de facture*";
             // 
             // lblDate
             // 
@@ -172,63 +174,63 @@
             this.lblCurrency.AutoSize = true;
             this.lblCurrency.Location = new System.Drawing.Point(13, 115);
             this.lblCurrency.Name = "lblCurrency";
-            this.lblCurrency.Size = new System.Drawing.Size(40, 13);
+            this.lblCurrency.Size = new System.Drawing.Size(44, 13);
             this.lblCurrency.TabIndex = 14;
-            this.lblCurrency.Text = "Devise";
+            this.lblCurrency.Text = "Devise*";
             // 
             // lblAmountHT
             // 
             this.lblAmountHT.AutoSize = true;
             this.lblAmountHT.Location = new System.Drawing.Point(13, 170);
             this.lblAmountHT.Name = "lblAmountHT";
-            this.lblAmountHT.Size = new System.Drawing.Size(64, 13);
+            this.lblAmountHT.Size = new System.Drawing.Size(68, 13);
             this.lblAmountHT.TabIndex = 15;
-            this.lblAmountHT.Text = "Montant HT";
+            this.lblAmountHT.Text = "Montant HT*";
             // 
             // lblAmountTTC
             // 
             this.lblAmountTTC.AutoSize = true;
             this.lblAmountTTC.Location = new System.Drawing.Point(13, 222);
             this.lblAmountTTC.Name = "lblAmountTTC";
-            this.lblAmountTTC.Size = new System.Drawing.Size(70, 13);
+            this.lblAmountTTC.Size = new System.Drawing.Size(74, 13);
             this.lblAmountTTC.TabIndex = 16;
-            this.lblAmountTTC.Text = "Montant TTC";
+            this.lblAmountTTC.Text = "Montant TTC*";
             // 
             // lblUser
             // 
             this.lblUser.AutoSize = true;
             this.lblUser.Location = new System.Drawing.Point(13, 317);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(54, 13);
+            this.lblUser.Size = new System.Drawing.Size(58, 13);
             this.lblUser.TabIndex = 17;
-            this.lblUser.Text = "Receveur";
+            this.lblUser.Text = "Receveur*";
             // 
             // lblProvider
             // 
             this.lblProvider.AutoSize = true;
             this.lblProvider.Location = new System.Drawing.Point(264, 316);
             this.lblProvider.Name = "lblProvider";
-            this.lblProvider.Size = new System.Drawing.Size(61, 13);
+            this.lblProvider.Size = new System.Drawing.Size(65, 13);
             this.lblProvider.TabIndex = 18;
-            this.lblProvider.Text = "Fournisseur";
+            this.lblProvider.Text = "Fournisseur*";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(527, 317);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(82, 13);
+            this.label8.Size = new System.Drawing.Size(86, 13);
             this.label8.TabIndex = 19;
-            this.label8.Text = "Type de facture";
+            this.label8.Text = "Type de facture*";
             // 
-            // label9
+            // lblStorage
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(279, 13);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 13);
-            this.label9.TabIndex = 20;
-            this.label9.Text = "label9";
+            this.lblStorage.AutoSize = true;
+            this.lblStorage.Location = new System.Drawing.Point(279, 13);
+            this.lblStorage.Name = "lblStorage";
+            this.lblStorage.Size = new System.Drawing.Size(242, 13);
+            this.lblStorage.TabIndex = 20;
+            this.lblStorage.Text = "Lieu de stockage physique (max 500 charactères)";
             // 
             // lblFile
             // 
@@ -245,7 +247,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(742, 450);
             this.Controls.Add(this.lblFile);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.lblStorage);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.lblProvider);
             this.Controls.Add(this.lblUser);
@@ -257,7 +259,7 @@
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdAdd);
             this.Controls.Add(this.cmdFile);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.rtxtStorage);
             this.Controls.Add(this.cmbType);
             this.Controls.Add(this.cmbProvider);
             this.Controls.Add(this.cmbUser);
@@ -286,7 +288,7 @@
         private System.Windows.Forms.ComboBox cmbUser;
         private System.Windows.Forms.ComboBox cmbProvider;
         private System.Windows.Forms.ComboBox cmbType;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox rtxtStorage;
         private System.Windows.Forms.Button cmdFile;
         private System.Windows.Forms.Button cmdAdd;
         private System.Windows.Forms.Button cmdCancel;
@@ -298,7 +300,7 @@
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.Label lblProvider;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblStorage;
         private System.Windows.Forms.Label lblFile;
     }
 }

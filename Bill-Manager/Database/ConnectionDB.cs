@@ -79,6 +79,145 @@ namespace Bill_Manager.Database
         }
 
         /// <summary>
+        /// Fetches entire list of users from the database
+        /// </summary>
+        /// <returns></returns>
+        public List<User> GetAllUsers()
+        {
+            List<User> users = new List<User>();
+
+            using (MySqlConnection connection = openConnection())
+            {
+                try
+                {
+                    string cmdText =
+                        "SELECT id, email, firstName, lastName, password, isAdmin, hasChangedPassword " +
+                        "FROM users";
+
+                    MySqlCommand cmd = new MySqlCommand(cmdText, connection); ;
+                    connection.Open();
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = Convert.ToInt32(reader["id"]);
+                            string mail = reader["email"].ToString();
+                            string firstName = reader["firstName"].ToString();
+                            string lastName = reader["lastName"].ToString();
+                            string pass = reader["password"].ToString();
+                            bool isAdmin = (reader["isAdmin"].ToString() == "1");
+                            bool hasNewPass = (reader["hasChangedPassword"].ToString() == "1");
+
+                            users.Add(new User(id, firstName, lastName, mail, pass, isAdmin, hasNewPass));
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            return users;
+        }
+
+        /// <summary>
+        /// Fetches entire list of provider from the database
+        /// </summary>
+        /// <returns></returns>
+        public List<Provider> GetAllProviders()
+        {
+            List<Provider> providers = new List<Provider>();
+
+            using (MySqlConnection connection = openConnection())
+            {
+                try
+                {
+                    string cmdText = "SELECT * FROM providers";
+
+                    MySqlCommand cmd = new MySqlCommand(cmdText, connection); ;
+                    connection.Open();
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = Convert.ToInt32(reader["id"]);
+                            string name = reader["name"].ToString();
+                            string email = reader["email"].ToString();
+                            string phoneNumber = reader["phoneNumber"].ToString();
+                            string roadName = reader["roadName"].ToString();
+                            int number = Convert.ToInt32(reader["number"]);
+                            int zip = Convert.ToInt32(reader["zip"]);
+                            string city = reader["city"].ToString();
+
+                            providers.Add(new Provider(id, name, email, phoneNumber, roadName, number, city, zip.ToString()));
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            return providers;
+        }
+
+        /// <summary>
+        /// Fetches entire list of types from the database
+        /// </summary>
+        /// <returns></returns>
+        public List<Type> GetAllTypes()
+        {
+            List<Type> types = new List<Type>();
+
+            using (MySqlConnection connection = openConnection())
+            {
+                try
+                {
+                    string cmdText = "SELECT * FROM types";
+
+                    MySqlCommand cmd = new MySqlCommand(cmdText, connection); ;
+                    connection.Open();
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = Convert.ToInt32(reader["id"]);
+                            string name = reader["name"].ToString();
+
+                            types.Add(new Type(id, name));
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            return types;
+        }
+
+        /// <summary>
         /// Creates a new user in database
         /// </summary>
         /// <param name="user"></param>
@@ -99,6 +238,46 @@ namespace Bill_Manager.Database
                     cmd.Parameters.AddWithValue("@pass", user.Password);
                     cmd.Parameters.AddWithValue("@admin", user.IsAdmin);
                     cmd.Parameters.AddWithValue("@changed", user.HasChangedPassword);
+
+                    connection.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        public void AddBill(Bill bill)
+        {
+            using (MySqlConnection connection = openConnection())
+            {
+                try
+                {
+                    string cmdText =
+                        "INSERT INTO bills (billNumber, date, currency, amountHT, amountTTC, storageLocation, imgLink, Provider_id, Type_id, User_id) " +
+                        "VALUES (@num, @date, @currency, @HT, @TTC, @storage, @link, @provider, @type, @user)";
+
+                    MySqlCommand cmd = new MySqlCommand(cmdText, connection); ;
+
+                    cmd.Parameters.AddWithValue("@num", bill.BillNumber);
+                    cmd.Parameters.AddWithValue("@date", bill.Date);
+                    cmd.Parameters.AddWithValue("@currency", bill.Currency);
+                    cmd.Parameters.AddWithValue("@HT", bill.AmountHC);
+                    cmd.Parameters.AddWithValue("@TTC", bill.AmountTTC);
+                    cmd.Parameters.AddWithValue("@storage", bill.StorageLocation);
+                    cmd.Parameters.AddWithValue("@link", bill.ImageLink);
+
+                    cmd.Parameters.AddWithValue("@provider", bill.Provider.Id);
+                    cmd.Parameters.AddWithValue("@type", bill.Type.Id);
+                    cmd.Parameters.AddWithValue("@user", bill.User.Id);
 
                     connection.Open();
 
