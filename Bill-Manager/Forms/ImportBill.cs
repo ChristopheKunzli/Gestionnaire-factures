@@ -120,23 +120,16 @@ namespace Bill_Manager
         /// <returns>The ful destination path</returns>
         private string copyFile(string providerName, string filePath, string root = "C:\\bills")
         {
-            if (!Directory.Exists(root))
-            {
-                Directory.CreateDirectory(root);
-            }
+            //Create the destination directory if it doesn't exist
+            Directory.CreateDirectory(root);
 
             string fullDestination = root + "\\" + providerName;
-            if(!Directory.Exists(fullDestination))
-            {
-                Directory.CreateDirectory(fullDestination);
-            }
+            Directory.CreateDirectory(fullDestination);
 
-            string selectedFilePath = filePath;
-            string selectedFileName = Path.GetFileName(selectedFilePath);
-
+            //Copy the file
+            string selectedFileName = Path.GetFileName(filePath);
             string destinationFilePath = Path.Combine(fullDestination, selectedFileName);
-
-            File.Copy(selectedFilePath, destinationFilePath);
+            File.Copy(filePath, destinationFilePath);
 
             return destinationFilePath;
         }
