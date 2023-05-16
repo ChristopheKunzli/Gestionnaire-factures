@@ -98,11 +98,12 @@ namespace Bill_Manager
             double amountTTC = Convert.ToDouble(txtAmountTTC.Text);
 
             string storage = rtxtStorage.Text;
-            string filePath = copyFile(ofd.FileName); //Copy the file to server storage location
 
             User user = cmbUser.SelectedItem as User;
             Provider provider = cmbProvider.SelectedItem as Provider;
             Type type = cmbType.SelectedItem as Type;
+
+            string filePath = copyFile(provider.Name, ofd.FileName); //Copy the file to server storage location
 
             //Send it to the connction class
             connection.AddBill(new Bill(num, date, currency, amountHT, amountTTC, storage, filePath, provider, type, user));
@@ -113,15 +114,27 @@ namespace Bill_Manager
         /// <summary>
         /// Copies a file into a specified direcory
         /// </summary>
+        /// <param name="providerName"></param>
         /// <param name="filePath"></param>
-        /// <param name="destination"></param>
-        /// <returns>the full destination path</returns>
-        private string copyFile(string filePath, string destination = "C:\\bills")
+        /// <param name="root"></param>
+        /// <returns>The ful destination path</returns>
+        private string copyFile(string providerName, string filePath, string root = "C:\\bills")
         {
+            if (!Directory.Exists(root))
+            {
+                Directory.CreateDirectory(root);
+            }
+
+            string fullDestination = root + "\\" + providerName;
+            if(!Directory.Exists(fullDestination))
+            {
+                Directory.CreateDirectory(fullDestination);
+            }
+
             string selectedFilePath = filePath;
             string selectedFileName = Path.GetFileName(selectedFilePath);
 
-            string destinationFilePath = Path.Combine(destination, selectedFileName);
+            string destinationFilePath = Path.Combine(fullDestination, selectedFileName);
 
             File.Copy(selectedFilePath, destinationFilePath);
 
