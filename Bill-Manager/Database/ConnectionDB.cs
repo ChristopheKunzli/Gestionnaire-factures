@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+//using System.Windows.Forms;
 
 using MySqlConnector;
 
-namespace Bill_Manager.Database
+namespace Bill_Manager
 {
     public class ConnectionDB
     {
-        public ConnectionDB() { }
+        private string connectionString;
+
+        public ConnectionDB()
+        {
+            connectionString = "SERVER=127.0.0.1; PORT=3306; DATABASE=bill-manager; UID=client_bill-manager; PASSWORD=Pa$$w0rd";
+        }
+
+        public ConnectionDB(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
 
         /// <summary>
         /// Creates a connection to the database
@@ -20,7 +26,6 @@ namespace Bill_Manager.Database
         /// <returns></returns>
         private MySqlConnection openConnection()
         {
-            string connectionString = "SERVER=127.0.0.1; PORT=3306; DATABASE=bill-manager; UID=client_bill-manager; PASSWORD=Pa$$w0rd";
             return new MySqlConnection(connectionString);
         }
 
@@ -66,7 +71,7 @@ namespace Bill_Manager.Database
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    //MessageBox.Show(ex.Message);
                     user = null;
                 }
                 finally
@@ -116,7 +121,7 @@ namespace Bill_Manager.Database
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    //MessageBox.Show(ex.Message);
                 }
                 finally
                 {
@@ -164,7 +169,7 @@ namespace Bill_Manager.Database
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    //MessageBox.Show(ex.Message);
                 }
                 finally
                 {
@@ -206,7 +211,7 @@ namespace Bill_Manager.Database
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    //MessageBox.Show(ex.Message);
                 }
                 finally
                 {
@@ -246,7 +251,7 @@ namespace Bill_Manager.Database
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    //MessageBox.Show(ex.Message);
                 }
                 finally
                 {
@@ -290,7 +295,7 @@ namespace Bill_Manager.Database
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    //MessageBox.Show(ex.Message);
                 }
                 finally
                 {
@@ -327,7 +332,7 @@ namespace Bill_Manager.Database
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    //MessageBox.Show(ex.Message);
                 }
                 finally
                 {
@@ -366,7 +371,7 @@ namespace Bill_Manager.Database
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    //MessageBox.Show(ex.Message);
                 }
                 finally
                 {
