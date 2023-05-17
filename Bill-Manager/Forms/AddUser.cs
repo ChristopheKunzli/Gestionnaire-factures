@@ -20,6 +20,7 @@ namespace Bill_Manager
 
         private void cmdAdd_Click(object sender, EventArgs e)
         {
+            //Errors
             if (txtEmail.Text == string.Empty || txtFirstName.Text == string.Empty || txtLastName.Text == string.Empty)
             {
                 MessageBox.Show("Veuillez renseigner tous les champs");
@@ -34,6 +35,7 @@ namespace Bill_Manager
                 return;
             }
 
+            //Extract data
             string email = txtEmail.Text;
             string firstName = txtFirstName.Text;
             string lastName = txtLastName.Text;
@@ -42,6 +44,7 @@ namespace Bill_Manager
 
             User newUser = new User(firstName, lastName, email, BCrypt.Net.BCrypt.HashPassword("1234"), isAdmin, false);
 
+            //Send new user to DB connection class
             connectionDB.AddUser(newUser);
 
             Close();

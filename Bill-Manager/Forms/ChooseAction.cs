@@ -22,9 +22,10 @@ namespace Bill_Manager
 
         private void nextAction(object sender, EventArgs e)
         {
-            Form nextAction = null;
-
             Button action = (Button)sender;
+
+            //Determine what form to open next based on which button was clicked
+            Form nextAction = null;
 
             switch (action.Name)
             {
@@ -68,6 +69,7 @@ namespace Bill_Manager
 
         private void ChooseAction_Load(object sender, EventArgs e)
         {
+            //Display the user's name on the form
             lblWelcome.Text = $"Welcome {user}";
             lblWelcome.Location = new Point((Size.Width - lblWelcome.Size.Width) / 2 - 10, lblWelcome.Location.Y);
         }

@@ -136,8 +136,10 @@ namespace Bill_Manager
 
         private void cmdFile_Click(object sender, EventArgs e)
         {
+            //Open the file dialog
             if (ofd.ShowDialog() == DialogResult.OK)
             {
+                //Check that the user selected a pdf file
                 if (Path.GetExtension(ofd.FileName).ToLower() != ".pdf")
                 {
                     MessageBox.Show("Veuillez sélectionner un ficher de type PDF");
@@ -145,6 +147,7 @@ namespace Bill_Manager
                     return;
                 }
 
+                //Display the name of the pdf file
                 lblFile.Text = ofd.FileName;
             }
             else

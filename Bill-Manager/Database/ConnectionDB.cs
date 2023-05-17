@@ -255,6 +255,10 @@ namespace Bill_Manager.Database
             }
         }
 
+        /// <summary>
+        /// Inserts a new biill in the database
+        /// </summary>
+        /// <param name="bill"></param>
         public void AddBill(Bill bill)
         {
             using (MySqlConnection connection = openConnection())

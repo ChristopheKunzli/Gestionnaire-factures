@@ -51,7 +51,10 @@ namespace Bill_Manager
                     break;
             }
 
-            Application.Run(nextAction);
+            if (nextAction != null)
+            {
+                Application.Run(nextAction);
+            }
         }
     }
 }
