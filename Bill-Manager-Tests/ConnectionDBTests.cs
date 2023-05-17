@@ -11,6 +11,7 @@ namespace Bill_Manager_Tests
         public void Setup()
         {
             string connectionString = "SERVER=127.0.0.1; PORT=3306; DATABASE=bill-manager_test; UID=client_bill-manager; PASSWORD=Pa$$w0rd";
+            //TODO Import the script into the project instead of using an absolute path
             string path = @"C:\db_test.sql";
 
             resetDB(connectionString, path);
