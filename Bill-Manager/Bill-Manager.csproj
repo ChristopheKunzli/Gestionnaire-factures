@@ -136,6 +136,12 @@
     <Compile Include="Objects\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Forms\Viewbill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Viewbill.Designer.cs">
+      <DependentUpon>Viewbill.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\ConsultBills.resx">
       <DependentUpon>ConsultBills.cs</DependentUpon>
     </EmbeddedResource>
@@ -166,6 +172,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\Viewbill.resx">
+      <DependentUpon>Viewbill.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

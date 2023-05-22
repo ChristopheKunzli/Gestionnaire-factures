@@ -23,7 +23,7 @@ namespace Bill_Manager
 
         private OpenFileDialog ofd = new OpenFileDialog()
         {
-            InitialDirectory = @"D:\",
+            InitialDirectory = @"C:\",
             Title = "Parcourir les fichiers",
 
             CheckFileExists = true,
@@ -117,7 +117,7 @@ namespace Bill_Manager
         /// <param name="filePath"></param>
         /// <param name="root"></param>
         /// <returns>The ful destination path</returns>
-        private string copyFile(string providerName, string filePath, string root = "C:\\bills")
+        private string copyFile(string providerName, string filePath, string root = "N:\\COMMUN\\ELEVE\\INFO\\SI-CA2a\\TPI\\bills")
         {
             //Create the destination directory if it doesn't exist
             Directory.CreateDirectory(root);

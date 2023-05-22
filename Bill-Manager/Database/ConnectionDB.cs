@@ -280,7 +280,7 @@ namespace Bill_Manager
                     cmd.Parameters.AddWithValue("@num", bill.BillNumber);
                     cmd.Parameters.AddWithValue("@date", bill.Date);
                     cmd.Parameters.AddWithValue("@currency", bill.Currency);
-                    cmd.Parameters.AddWithValue("@HT", bill.AmountHC);
+                    cmd.Parameters.AddWithValue("@HT", bill.AmountHT);
                     cmd.Parameters.AddWithValue("@TTC", bill.AmountTTC);
                     cmd.Parameters.AddWithValue("@storage", bill.StorageLocation);
                     cmd.Parameters.AddWithValue("@link", bill.ImageLink);
@@ -388,26 +388,19 @@ namespace Bill_Manager
         /// <returns></returns>
         public List<Bill> GetAllBills(User user)
         {
+            List<Provider> providers = GetAllProviders();
+            List<Type> types = GetAllTypes();
+
             List<Bill> bills = new List<Bill>();
 
             using (MySqlConnection connection = openConnection())
             {
                 try
                 {
-                    /*
-                    string test = 
-                        "SELECT * FROM bills " +
-                        "LEFT JOIN providers ON providers.id=bills.Provider_id " +
-                        "LEFT JOIN types ON types.id=bills.Type_id " +
-                        "LEFT JOIN users ON users.id=bills.User_id " +
-                        "WHERE bills.User_id=" + user.Id;
-                    */
                     string cmdText = 
                         "SELECT * FROM bills " +
-                        "LEFT JOIN providers ON providers.id=bills.Provider_id " +
-                        "LEFT JOIN types ON types.id=bills.Type_id " +
-                        "LEFT JOIN users ON users.id=bills.User_id " +
-                        "WHERE bills.User_id=@id";
+                        "WHERE User_id=@id " +
+                        "ORDER BY date";
 
                     MySqlCommand cmd = new MySqlCommand(cmdText, connection); ;
                     cmd.Parameters.AddWithValue("@id", user.Id);
@@ -418,36 +411,42 @@ namespace Bill_Manager
                     {
                         while (reader.Read())
                         {
-                            
-                            //Extract provider data
-                            int prov_id = Convert.ToInt32(reader[11]);
-                            string prov_name = Convert.ToString(reader[12]);
-                            string prov_email = Convert.ToString(reader[13]);
-                            string prov_phone = Convert.ToString(reader[14]);
-                            string prov_roadName = Convert.ToString(reader[15]);
-                            int prov_number = Convert.ToInt32(reader[16]);
-                            string prov_zip = Convert.ToString(reader[17]);
-                            string prov_city = Convert.ToString(reader[18]);
-
-                            Provider provider = new Provider(prov_id, prov_name, prov_email, prov_phone, prov_roadName, prov_number, prov_city, prov_zip);
-
-                            //Extract type data
-                            int type_id = Convert.ToInt32(reader[19]);
-                            string type_name = Convert.ToString(reader[20]);
-
-                            Type type = new Type(type_id, type_name);
- 
                             //Extract bill data
-                            int bill_id = Convert.ToInt32(reader[0]);
-                            string billNumber = Convert.ToString(reader[1]);
-                            DateTime date = Convert.ToDateTime(reader[2]);
-                            string currency = Convert.ToString(reader[3]);
-                            double amountHT = Convert.ToDouble(reader[4]);
-                            double amountTTC = Convert.ToDouble(reader[5]);
-                            string storage = Convert.ToString(reader[6]);
-                            string link = Convert.ToString(reader[7]);
+                            int id = Convert.ToInt32(reader["id"]);
+                            string billNumber = Convert.ToString(reader["billNumber"]);
+                            DateTime date = Convert.ToDateTime(reader["date"]);
+                            string currency = Convert.ToString(reader["currency"]);
+                            double amountHT = Convert.ToDouble(reader["amountHT"]);
+                            double amountTTC = Convert.ToDouble(reader["amountTTC"]);
+                            string storage = Convert.ToString(reader["storageLocation"]);
+                            string link = Convert.ToString(reader["imgLink"]);
+                            int prov_id = Convert.ToInt32(reader["Provider_id"]);
+                            int type_id = Convert.ToInt32(reader["Type_id"]);
+                            int user_id = Convert.ToInt32(reader["User_id"]);
 
-                            Bill bill = new Bill(bill_id, billNumber, date, currency, amountHT, amountTTC, storage, link, provider, type, user);
+                            //Get the provider
+                            Provider provider = null;
+                            foreach (Provider p in providers)
+                            {
+                                if (p.Id == prov_id)
+                                {
+                                    provider = p;
+                                }
+                            }
+
+                            //Get the type
+                            Type type = null;
+
+                            foreach(Type t in types)
+                            {
+                                if(t.Id ==  type_id)
+                                {
+                                    type = t;
+                                }
+                            }
+
+                            //Add the bill to the list
+                            Bill bill = new Bill(id, billNumber, date, currency, amountHT, amountTTC, storage, link, provider, type, user);
 
                             bills.Add(bill);
                         }

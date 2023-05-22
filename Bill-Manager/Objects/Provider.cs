@@ -37,6 +37,7 @@ namespace Bill_Manager
             this.city = city;
             this.zip = zip;
         }
+
         public Provider(string name, string email, string phone, string roadName, int number, string city, string zip)
         {
             this.id = -1;
@@ -51,7 +52,7 @@ namespace Bill_Manager
 
         public override string ToString()
         {
-            return $"{name} {city}";
+            return $"{name} : {city}";
         }
     }
 }

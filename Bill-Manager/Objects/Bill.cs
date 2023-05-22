@@ -13,7 +13,7 @@ namespace Bill_Manager
         private string billNumber;
         private DateTime date;
         private string currency;
-        private double amountHC;
+        private double amountHT;
         private double amountTTC;
         private string storageLocation;
         private string imgLink;
@@ -25,7 +25,7 @@ namespace Bill_Manager
         public string BillNumber { get {  return billNumber; } }
         public DateTime Date { get { return date; } }
         public string Currency { get { return currency; } }
-        public double AmountHC { get {  return amountHC; } }
+        public double AmountHT { get {  return amountHT; } }
         public double AmountTTC { get {  return amountTTC; } }
         public string StorageLocation { get {  return storageLocation; } }
         public string ImageLink { get {  return imgLink; } }
@@ -39,7 +39,7 @@ namespace Bill_Manager
             this.billNumber = billNumber;
             this.date = date;
             this.currency = currency;
-            this.amountHC = amountHC;
+            this.amountHT = amountHC;
             this.amountTTC = amountTTC;
             this.storageLocation = storageLocation;
             this.imgLink = imgLink;
@@ -54,7 +54,7 @@ namespace Bill_Manager
             this.billNumber = billNumber;
             this.date = date;
             this.currency = currency;
-            this.amountHC = amountHC;
+            this.amountHT = amountHC;
             this.amountTTC = amountTTC;
             this.storageLocation = storageLocation;
             this.imgLink = imgLink;
@@ -65,7 +65,7 @@ namespace Bill_Manager
 
         public override string ToString()
         {
-            return $"Numéro:{billNumber}, date:{date.Day}:{date.Month}:{date.Year}, fournisseur:{provider}, montant TTC:{amountTTC}";
+            return $"Numéro:{billNumber}, date:{date.Day}:{date.Month}:{date.Year}, fournisseur:{provider}, montant TTC:{amountTTC} {currency}";
         }
     }
 }

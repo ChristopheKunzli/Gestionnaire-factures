@@ -30,23 +30,23 @@
         {
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabBills = new System.Windows.Forms.TabPage();
-            this.tabStats = new System.Windows.Forms.TabPage();
-            this.lstBoxProviders = new System.Windows.Forms.ListBox();
-            this.numMin = new System.Windows.Forms.NumericUpDown();
-            this.numMax = new System.Windows.Forms.NumericUpDown();
-            this.cmdSearch = new System.Windows.Forms.Button();
-            this.cmdViewBill = new System.Windows.Forms.Button();
-            this.cmdQuit = new System.Windows.Forms.Button();
-            this.dgvBills = new System.Windows.Forms.DataGridView();
-            this.lblProviders = new System.Windows.Forms.Label();
-            this.lblMin = new System.Windows.Forms.Label();
-            this.lblMax = new System.Windows.Forms.Label();
             this.lblBills = new System.Windows.Forms.Label();
+            this.lblMax = new System.Windows.Forms.Label();
+            this.lblMin = new System.Windows.Forms.Label();
+            this.lblProviders = new System.Windows.Forms.Label();
+            this.dgvBills = new System.Windows.Forms.DataGridView();
+            this.cmdQuit = new System.Windows.Forms.Button();
+            this.cmdViewBill = new System.Windows.Forms.Button();
+            this.cmdSearch = new System.Windows.Forms.Button();
+            this.numMax = new System.Windows.Forms.NumericUpDown();
+            this.numMin = new System.Windows.Forms.NumericUpDown();
+            this.lstBoxProviders = new System.Windows.Forms.ListBox();
+            this.tabStats = new System.Windows.Forms.TabPage();
             this.tabMain.SuspendLayout();
             this.tabBills.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numMin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBills)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMin)).BeginInit();
             this.SuspendLayout();
             // 
             // tabMain
@@ -56,7 +56,7 @@
             this.tabMain.Location = new System.Drawing.Point(12, 12);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(856, 436);
+            this.tabMain.Size = new System.Drawing.Size(1098, 436);
             this.tabMain.TabIndex = 0;
             // 
             // tabBills
@@ -75,72 +75,46 @@
             this.tabBills.Location = new System.Drawing.Point(4, 22);
             this.tabBills.Name = "tabBills";
             this.tabBills.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBills.Size = new System.Drawing.Size(848, 410);
+            this.tabBills.Size = new System.Drawing.Size(1090, 410);
             this.tabBills.TabIndex = 0;
             this.tabBills.Text = "Factures";
             this.tabBills.UseVisualStyleBackColor = true;
             // 
-            // tabStats
+            // lblBills
             // 
-            this.tabStats.Location = new System.Drawing.Point(4, 22);
-            this.tabStats.Name = "tabStats";
-            this.tabStats.Padding = new System.Windows.Forms.Padding(3);
-            this.tabStats.Size = new System.Drawing.Size(848, 410);
-            this.tabStats.TabIndex = 1;
-            this.tabStats.Text = "Statistiques";
-            this.tabStats.UseVisualStyleBackColor = true;
+            this.lblBills.AutoSize = true;
+            this.lblBills.Location = new System.Drawing.Point(425, 8);
+            this.lblBills.Name = "lblBills";
+            this.lblBills.Size = new System.Drawing.Size(48, 13);
+            this.lblBills.TabIndex = 10;
+            this.lblBills.Text = "Factures";
             // 
-            // lstBoxProviders
+            // lblMax
             // 
-            this.lstBoxProviders.FormattingEnabled = true;
-            this.lstBoxProviders.Location = new System.Drawing.Point(7, 29);
-            this.lstBoxProviders.Name = "lstBoxProviders";
-            this.lstBoxProviders.Size = new System.Drawing.Size(160, 368);
-            this.lstBoxProviders.TabIndex = 0;
+            this.lblMax.AutoSize = true;
+            this.lblMax.Location = new System.Drawing.Point(274, 51);
+            this.lblMax.Name = "lblMax";
+            this.lblMax.Size = new System.Drawing.Size(92, 13);
+            this.lblMax.TabIndex = 9;
+            this.lblMax.Text = "Montant maximum";
             // 
-            // numMin
+            // lblMin
             // 
-            this.numMin.Location = new System.Drawing.Point(215, 29);
-            this.numMin.Name = "numMin";
-            this.numMin.Size = new System.Drawing.Size(100, 20);
-            this.numMin.TabIndex = 1;
+            this.lblMin.AutoSize = true;
+            this.lblMin.Location = new System.Drawing.Point(273, 8);
+            this.lblMin.Name = "lblMin";
+            this.lblMin.Size = new System.Drawing.Size(89, 13);
+            this.lblMin.TabIndex = 8;
+            this.lblMin.Text = "Montant minimum";
             // 
-            // numMax
+            // lblProviders
             // 
-            this.numMax.Location = new System.Drawing.Point(214, 71);
-            this.numMax.Name = "numMax";
-            this.numMax.Size = new System.Drawing.Size(100, 20);
-            this.numMax.TabIndex = 2;
-            // 
-            // cmdSearch
-            // 
-            this.cmdSearch.Location = new System.Drawing.Point(215, 116);
-            this.cmdSearch.Name = "cmdSearch";
-            this.cmdSearch.Size = new System.Drawing.Size(133, 23);
-            this.cmdSearch.TabIndex = 3;
-            this.cmdSearch.Text = "Recherche";
-            this.cmdSearch.UseVisualStyleBackColor = true;
-            this.cmdSearch.Click += new System.EventHandler(this.cmdSearch_Click);
-            // 
-            // cmdViewBill
-            // 
-            this.cmdViewBill.Location = new System.Drawing.Point(215, 193);
-            this.cmdViewBill.Name = "cmdViewBill";
-            this.cmdViewBill.Size = new System.Drawing.Size(133, 23);
-            this.cmdViewBill.TabIndex = 4;
-            this.cmdViewBill.Text = "Voir la facture";
-            this.cmdViewBill.UseVisualStyleBackColor = true;
-            this.cmdViewBill.Click += new System.EventHandler(this.cmdViewBill_Click);
-            // 
-            // cmdQuit
-            // 
-            this.cmdQuit.Location = new System.Drawing.Point(215, 373);
-            this.cmdQuit.Name = "cmdQuit";
-            this.cmdQuit.Size = new System.Drawing.Size(133, 23);
-            this.cmdQuit.TabIndex = 5;
-            this.cmdQuit.Text = "Quitter";
-            this.cmdQuit.UseVisualStyleBackColor = true;
-            this.cmdQuit.Click += new System.EventHandler(this.cmdQuit_Click);
+            this.lblProviders.AutoSize = true;
+            this.lblProviders.Location = new System.Drawing.Point(8, 8);
+            this.lblProviders.Name = "lblProviders";
+            this.lblProviders.Size = new System.Drawing.Size(63, 13);
+            this.lblProviders.TabIndex = 7;
+            this.lblProviders.Text = "Founisseurs";
             // 
             // dgvBills
             // 
@@ -148,53 +122,84 @@
             this.dgvBills.AllowUserToDeleteRows = false;
             this.dgvBills.AllowUserToOrderColumns = true;
             this.dgvBills.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBills.Location = new System.Drawing.Point(400, 28);
+            this.dgvBills.Location = new System.Drawing.Point(428, 28);
             this.dgvBills.MultiSelect = false;
             this.dgvBills.Name = "dgvBills";
-            this.dgvBills.Size = new System.Drawing.Size(442, 368);
+            this.dgvBills.Size = new System.Drawing.Size(649, 368);
             this.dgvBills.TabIndex = 6;
             // 
-            // lblProviders
+            // cmdQuit
             // 
-            this.lblProviders.AutoSize = true;
-            this.lblProviders.Location = new System.Drawing.Point(8, 9);
-            this.lblProviders.Name = "lblProviders";
-            this.lblProviders.Size = new System.Drawing.Size(63, 13);
-            this.lblProviders.TabIndex = 7;
-            this.lblProviders.Text = "Founisseurs";
+            this.cmdQuit.Location = new System.Drawing.Point(274, 374);
+            this.cmdQuit.Name = "cmdQuit";
+            this.cmdQuit.Size = new System.Drawing.Size(133, 23);
+            this.cmdQuit.TabIndex = 5;
+            this.cmdQuit.Text = "Quitter";
+            this.cmdQuit.UseVisualStyleBackColor = true;
+            this.cmdQuit.Click += new System.EventHandler(this.cmdQuit_Click);
             // 
-            // lblMin
+            // cmdViewBill
             // 
-            this.lblMin.AutoSize = true;
-            this.lblMin.Location = new System.Drawing.Point(214, 9);
-            this.lblMin.Name = "lblMin";
-            this.lblMin.Size = new System.Drawing.Size(89, 13);
-            this.lblMin.TabIndex = 8;
-            this.lblMin.Text = "Montant minimum";
+            this.cmdViewBill.Location = new System.Drawing.Point(274, 194);
+            this.cmdViewBill.Name = "cmdViewBill";
+            this.cmdViewBill.Size = new System.Drawing.Size(133, 23);
+            this.cmdViewBill.TabIndex = 4;
+            this.cmdViewBill.Text = "Voir la facture";
+            this.cmdViewBill.UseVisualStyleBackColor = true;
+            this.cmdViewBill.Click += new System.EventHandler(this.cmdViewBill_Click);
             // 
-            // lblMax
+            // cmdSearch
             // 
-            this.lblMax.AutoSize = true;
-            this.lblMax.Location = new System.Drawing.Point(215, 52);
-            this.lblMax.Name = "lblMax";
-            this.lblMax.Size = new System.Drawing.Size(92, 13);
-            this.lblMax.TabIndex = 9;
-            this.lblMax.Text = "Montant maximum";
+            this.cmdSearch.Location = new System.Drawing.Point(274, 117);
+            this.cmdSearch.Name = "cmdSearch";
+            this.cmdSearch.Size = new System.Drawing.Size(133, 23);
+            this.cmdSearch.TabIndex = 3;
+            this.cmdSearch.Text = "Recherche";
+            this.cmdSearch.UseVisualStyleBackColor = true;
+            this.cmdSearch.Click += new System.EventHandler(this.cmdSearch_Click);
             // 
-            // lblBills
+            // numMax
             // 
-            this.lblBills.AutoSize = true;
-            this.lblBills.Location = new System.Drawing.Point(400, 8);
-            this.lblBills.Name = "lblBills";
-            this.lblBills.Size = new System.Drawing.Size(48, 13);
-            this.lblBills.TabIndex = 10;
-            this.lblBills.Text = "Factures";
+            this.numMax.Location = new System.Drawing.Point(273, 70);
+            this.numMax.Maximum = new decimal(new int[] {
+            500000,
+            0,
+            0,
+            0});
+            this.numMax.Name = "numMax";
+            this.numMax.Size = new System.Drawing.Size(100, 20);
+            this.numMax.TabIndex = 2;
+            // 
+            // numMin
+            // 
+            this.numMin.Location = new System.Drawing.Point(274, 28);
+            this.numMin.Name = "numMin";
+            this.numMin.Size = new System.Drawing.Size(100, 20);
+            this.numMin.TabIndex = 1;
+            // 
+            // lstBoxProviders
+            // 
+            this.lstBoxProviders.FormattingEnabled = true;
+            this.lstBoxProviders.Location = new System.Drawing.Point(7, 29);
+            this.lstBoxProviders.Name = "lstBoxProviders";
+            this.lstBoxProviders.Size = new System.Drawing.Size(245, 368);
+            this.lstBoxProviders.TabIndex = 0;
+            // 
+            // tabStats
+            // 
+            this.tabStats.Location = new System.Drawing.Point(4, 22);
+            this.tabStats.Name = "tabStats";
+            this.tabStats.Padding = new System.Windows.Forms.Padding(3);
+            this.tabStats.Size = new System.Drawing.Size(1090, 410);
+            this.tabStats.TabIndex = 1;
+            this.tabStats.Text = "Statistiques";
+            this.tabStats.UseVisualStyleBackColor = true;
             // 
             // ConsultBills
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(880, 460);
+            this.ClientSize = new System.Drawing.Size(1121, 460);
             this.Controls.Add(this.tabMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ConsultBills";
@@ -204,9 +209,9 @@
             this.tabMain.ResumeLayout(false);
             this.tabBills.ResumeLayout(false);
             this.tabBills.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numMin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numMax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBills)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMin)).EndInit();
             this.ResumeLayout(false);
 
         }
