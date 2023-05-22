@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 //using System.Windows.Forms;
 
 using MySqlConnector;
@@ -378,6 +379,92 @@ namespace Bill_Manager
                     connection.Close();
                 }
             }
+        }
+
+        /// <summary>
+        /// Fetches a list of every bill linked to a user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public List<Bill> GetAllBills(User user)
+        {
+            List<Bill> bills = new List<Bill>();
+
+            using (MySqlConnection connection = openConnection())
+            {
+                try
+                {
+                    /*
+                    string test = 
+                        "SELECT * FROM bills " +
+                        "LEFT JOIN providers ON providers.id=bills.Provider_id " +
+                        "LEFT JOIN types ON types.id=bills.Type_id " +
+                        "LEFT JOIN users ON users.id=bills.User_id " +
+                        "WHERE bills.User_id=" + user.Id;
+                    */
+                    string cmdText = 
+                        "SELECT * FROM bills " +
+                        "LEFT JOIN providers ON providers.id=bills.Provider_id " +
+                        "LEFT JOIN types ON types.id=bills.Type_id " +
+                        "LEFT JOIN users ON users.id=bills.User_id " +
+                        "WHERE bills.User_id=@id";
+
+                    MySqlCommand cmd = new MySqlCommand(cmdText, connection); ;
+                    cmd.Parameters.AddWithValue("@id", user.Id);
+
+                    connection.Open();
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            
+                            //Extract provider data
+                            int prov_id = Convert.ToInt32(reader[11]);
+                            string prov_name = Convert.ToString(reader[12]);
+                            string prov_email = Convert.ToString(reader[13]);
+                            string prov_phone = Convert.ToString(reader[14]);
+                            string prov_roadName = Convert.ToString(reader[15]);
+                            int prov_number = Convert.ToInt32(reader[16]);
+                            string prov_zip = Convert.ToString(reader[17]);
+                            string prov_city = Convert.ToString(reader[18]);
+
+                            Provider provider = new Provider(prov_id, prov_name, prov_email, prov_phone, prov_roadName, prov_number, prov_city, prov_zip);
+
+                            //Extract type data
+                            int type_id = Convert.ToInt32(reader[19]);
+                            string type_name = Convert.ToString(reader[20]);
+
+                            Type type = new Type(type_id, type_name);
+ 
+                            //Extract bill data
+                            int bill_id = Convert.ToInt32(reader[0]);
+                            string billNumber = Convert.ToString(reader[1]);
+                            DateTime date = Convert.ToDateTime(reader[2]);
+                            string currency = Convert.ToString(reader[3]);
+                            double amountHT = Convert.ToDouble(reader[4]);
+                            double amountTTC = Convert.ToDouble(reader[5]);
+                            string storage = Convert.ToString(reader[6]);
+                            string link = Convert.ToString(reader[7]);
+
+                            Bill bill = new Bill(bill_id, billNumber, date, currency, amountHT, amountTTC, storage, link, provider, type, user);
+
+                            bills.Add(bill);
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            return bills;
         }
     }
 }

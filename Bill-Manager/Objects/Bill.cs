@@ -65,7 +65,7 @@ namespace Bill_Manager
 
         public override string ToString()
         {
-            return $"Numéro:{billNumber}, fournisseur:{provider}, montant TTC:{amountTTC}";
+            return $"Numéro:{billNumber}, date:{date.Day}:{date.Month}:{date.Year}, fournisseur:{provider}, montant TTC:{amountTTC}";
         }
     }
 }

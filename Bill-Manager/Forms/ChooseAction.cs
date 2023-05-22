@@ -38,8 +38,7 @@ namespace Bill_Manager
                     break;
 
                 case "cmdconsultBills":
-                    //TODO Replace this to connect next action with bill consultation form
-                    MessageBox.Show("Voir mes factures");
+                    nextAction = new ConsultBills(user);
                     break;
 
                 case "cmdNewUser":
