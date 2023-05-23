@@ -43,7 +43,7 @@ namespace Bill_Manager
                     nextAction = new ChooseAction(user);
                     break;
                 case false:
-                    nextAction= new ConsultBills(user);
+                    nextAction = new ConsultBills(user);
                     break;
                 default:
                     MessageBox.Show("erreur");

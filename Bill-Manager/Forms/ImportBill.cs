@@ -65,6 +65,11 @@ namespace Bill_Manager
             cmbType.SelectedIndex = -1;
         }
 
+        private string formatAmount(string amount)
+        {
+            return amount.Replace(",", ".");
+        }
+
         private void cmdAdd_Click(object sender, EventArgs e)
         {
             //Verify that all mandatory controls contain a value
@@ -93,8 +98,8 @@ namespace Bill_Manager
             DateTime date = dateDate.Value;
             string currency = cmbCurrency.SelectedItem.ToString();
 
-            double amountHT = Convert.ToDouble(txtAmountHT.Text);
-            double amountTTC = Convert.ToDouble(txtAmountTTC.Text);
+            double amountHT = Convert.ToDouble(formatAmount(txtAmountHT.Text));
+            double amountTTC = Convert.ToDouble(formatAmount(txtAmountTTC.Text));
 
             string storage = rtxtStorage.Text;
 
@@ -122,13 +127,14 @@ namespace Bill_Manager
             //Create the destination directory if it doesn't exist
             Directory.CreateDirectory(root);
 
-            string fullDestination = root + "\\" + providerName;
-            Directory.CreateDirectory(fullDestination);
+            string destinationDirectory = Path.Combine(root, providerName);
+            Directory.CreateDirectory(destinationDirectory);
 
             //Copy the file
-            string selectedFileName = Path.GetFileName(filePath);
-            string destinationFilePath = Path.Combine(fullDestination, selectedFileName);
-            File.Copy(filePath, destinationFilePath);
+            string fileName = Path.GetFileName(filePath);
+            string destinationFilePath = Path.Combine(destinationDirectory, fileName);
+
+            File.Copy(filePath, destinationFilePath, true);
 
             return destinationFilePath;
         }

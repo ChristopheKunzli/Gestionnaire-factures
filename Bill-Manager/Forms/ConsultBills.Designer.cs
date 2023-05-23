@@ -228,9 +228,9 @@
             this.chartAverage.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chartAverage.Legends.Add(legend1);
-            this.chartAverage.Location = new System.Drawing.Point(16, 71);
+            this.chartAverage.Location = new System.Drawing.Point(25, 66);
             this.chartAverage.Name = "chartAverage";
-            this.chartAverage.Size = new System.Drawing.Size(662, 300);
+            this.chartAverage.Size = new System.Drawing.Size(448, 300);
             this.chartAverage.TabIndex = 2;
             this.chartAverage.Text = "chart1";
             // 
