@@ -13,7 +13,7 @@ namespace Bill_Manager
 
         public ConnectionDB()
         {
-            connectionString = "SERVER=127.0.0.1; PORT=3306; DATABASE=bill-manager; UID=client_bill-manager; PASSWORD=Pa$$w0rd";
+            connectionString = "SERVER=SC-C236-PC09; PORT=3306; DATABASE=bill-manager; UID=client_bill-manager; PASSWORD=Pa$$w0rd";
         }
 
         public ConnectionDB(string connectionString)
@@ -72,7 +72,7 @@ namespace Bill_Manager
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message);
                     user = null;
                 }
                 finally

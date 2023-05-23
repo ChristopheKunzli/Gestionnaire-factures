@@ -47,7 +47,7 @@ namespace Bill_Manager
             updateDataGridView(allBills);
 
             //Initialize the chart with every bill
-            loadChart(allBills);
+            reloadChart(allBills);
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Bill_Manager
         /// <summary>
         /// Load the chart with every bill
         /// </summary>
-        private void loadChart(List<Bill> bills, string title = "Tous les fournisseurs")
+        private void reloadChart(List<Bill> bills, string title = "Tous les fournisseurs")
         {
             //Reset the chart 
             chartAverage.Titles.Clear();
@@ -150,7 +150,7 @@ namespace Bill_Manager
         /// <exception cref="NotImplementedException"></exception>
         private void loadChart(List<Bill> bills, Provider provider)
         {
-            loadChart(searchBills(bills, provider), provider.Name);
+            reloadChart(searchBills(bills, provider), provider.Name);
         }
 
         /// <summary>
