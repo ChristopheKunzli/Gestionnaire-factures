@@ -44,9 +44,9 @@
             this.numMin = new System.Windows.Forms.NumericUpDown();
             this.lstBoxProviders = new System.Windows.Forms.ListBox();
             this.tabStats = new System.Windows.Forms.TabPage();
-            this.cmbProviders = new System.Windows.Forms.ComboBox();
-            this.lblProvider = new System.Windows.Forms.Label();
             this.chartAverage = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.lblProvider = new System.Windows.Forms.Label();
+            this.cmbProviders = new System.Windows.Forms.ComboBox();
             this.tabMain.SuspendLayout();
             this.tabBills.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBills)).BeginInit();
@@ -205,34 +205,35 @@
             this.tabStats.Text = "Statistiques";
             this.tabStats.UseVisualStyleBackColor = true;
             // 
-            // cmbProviders
-            // 
-            this.cmbProviders.FormattingEnabled = true;
-            this.cmbProviders.Location = new System.Drawing.Point(16, 28);
-            this.cmbProviders.Name = "cmbProviders";
-            this.cmbProviders.Size = new System.Drawing.Size(121, 21);
-            this.cmbProviders.TabIndex = 0;
-            // 
-            // lblProvider
-            // 
-            this.lblProvider.AutoSize = true;
-            this.lblProvider.Location = new System.Drawing.Point(13, 12);
-            this.lblProvider.Name = "lblProvider";
-            this.lblProvider.Size = new System.Drawing.Size(61, 13);
-            this.lblProvider.TabIndex = 1;
-            this.lblProvider.Text = "Fournisseur";
-            // 
             // chartAverage
             // 
             chartArea1.Name = "ChartArea1";
             this.chartAverage.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chartAverage.Legends.Add(legend1);
-            this.chartAverage.Location = new System.Drawing.Point(25, 66);
+            this.chartAverage.Location = new System.Drawing.Point(16, 46);
             this.chartAverage.Name = "chartAverage";
-            this.chartAverage.Size = new System.Drawing.Size(448, 300);
+            this.chartAverage.Size = new System.Drawing.Size(1060, 347);
             this.chartAverage.TabIndex = 2;
             this.chartAverage.Text = "chart1";
+            // 
+            // lblProvider
+            // 
+            this.lblProvider.AutoSize = true;
+            this.lblProvider.Location = new System.Drawing.Point(13, 3);
+            this.lblProvider.Name = "lblProvider";
+            this.lblProvider.Size = new System.Drawing.Size(61, 13);
+            this.lblProvider.TabIndex = 1;
+            this.lblProvider.Text = "Fournisseur";
+            // 
+            // cmbProviders
+            // 
+            this.cmbProviders.FormattingEnabled = true;
+            this.cmbProviders.Location = new System.Drawing.Point(16, 19);
+            this.cmbProviders.Name = "cmbProviders";
+            this.cmbProviders.Size = new System.Drawing.Size(458, 21);
+            this.cmbProviders.TabIndex = 0;
+            this.cmbProviders.SelectedIndexChanged += new System.EventHandler(this.cmbProviders_SelectedIndexChanged);
             // 
             // ConsultBills
             // 

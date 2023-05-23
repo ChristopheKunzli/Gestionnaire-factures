@@ -88,9 +88,6 @@ namespace Bill_Manager
 
         private void cmdLogin_Click(object sender, EventArgs e)
         {
-            txtEmail.Text = "christophe.kunzli@cpnv.ch";
-            txtPassword.Text = "Pa$$w0rd";
-
             attemptConnection();
         }
 

@@ -13,7 +13,7 @@ namespace Bill_Manager
 {
     public partial class ConsultBills : Form
     {
-        private List<Bill> bills;
+        private List<Bill> allBills;
         private User user;
 
         public ConsultBills(User user)
@@ -31,24 +31,28 @@ namespace Bill_Manager
         private void ConsultBills_Load(object sender, EventArgs e)
         {
             //Get all bills
-            bills = new ConnectionDB().GetAllBills(user);
+            allBills = new ConnectionDB().GetAllBills(user);
 
             //Add providers to the listbox only if necessary
-            foreach (Bill b in bills)
+            foreach (Bill b in allBills)
             {
                 if (!lstBoxProviders.Items.Contains(b.Provider))
                 {
                     lstBoxProviders.Items.Add(b.Provider);
+                    cmbProviders.Items.Add(b.Provider);
                 }
             }
 
             //Link bills to the data grid view
-            updateDataGridView(bills);
+            updateDataGridView(allBills);
 
             //Initialize the chart with every bill
-            loadChart();
+            loadChart(allBills);
         }
 
+        /// <summary>
+        /// Used to load bills in a chart separated by year
+        /// </summary>
         private class BillGroup
         {
             private List<Bill> bills = new List<Bill>();
@@ -97,8 +101,16 @@ namespace Bill_Manager
             }
         }
 
-        private void loadChart()
+        /// <summary>
+        /// Load the chart with every bill
+        /// </summary>
+        private void loadChart(List<Bill> bills, string title = "Tous les fournisseurs")
         {
+            //Reset the chart 
+            chartAverage.Titles.Clear();
+            chartAverage.Series.Clear();
+
+            //Create the groups of bills
             int year = DateTime.Now.Year;
 
             List<BillGroup> groups = new List<BillGroup>();
@@ -110,6 +122,7 @@ namespace Bill_Manager
             }
 
             chartAverage.DataSource = groups;
+            chartAverage.Titles.Add(title);
 
             //Add a series showing averages per year
             Series averages = new Series();
@@ -127,14 +140,17 @@ namespace Bill_Manager
             sums.XValueMember = "Year";
             sums.YValueMembers = "Sum";
 
-            //sums.ChartType = SeriesChartType.Line;
-
             chartAverage.Series.Add(sums);
         }
 
-        private void loadChart(Provider provider)
+        /// <summary>
+        /// Reloads the chart using only bills from a certain provider
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        private void loadChart(List<Bill> bills, Provider provider)
         {
-            throw new NotImplementedException();
+            loadChart(searchBills(bills, provider), provider.Name);
         }
 
         /// <summary>
@@ -270,20 +286,20 @@ namespace Bill_Manager
 
             if (searchByAmount && searchByProvider)
             {
-                newBills = searchBills(bills, selectedProvider, minAmount, maxAmount);
+                newBills = searchBills(allBills, selectedProvider, minAmount, maxAmount);
             }
             else if (searchByAmount)
             {
-                newBills = searchBills(bills, minAmount, maxAmount);
+                newBills = searchBills(allBills, minAmount, maxAmount);
             }
             else if (searchByProvider)
             {
-                newBills = searchBills(bills, selectedProvider);
+                newBills = searchBills(allBills, selectedProvider);
             }
             else
             {
                 newBills = new List<Bill>();
-                newBills.AddRange(bills);
+                newBills.AddRange(allBills);
             }
 
             //Reset search controls
@@ -326,6 +342,17 @@ namespace Bill_Manager
         private void cmdQuit_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        /// <summary>
+        /// Reload chart data when selected provider changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmbProviders_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Provider selectedProvider = cmbProviders.SelectedItem as Provider;
+            loadChart(searchBills(allBills, selectedProvider), selectedProvider);
         }
     }
 }
