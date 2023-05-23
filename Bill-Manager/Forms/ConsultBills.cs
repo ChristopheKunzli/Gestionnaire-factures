@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Bill_Manager
 {
@@ -21,6 +22,7 @@ namespace Bill_Manager
 
             this.user = user;
         }
+
 
         /// <summary>
         /// Event handler for the form load event
@@ -63,6 +65,51 @@ namespace Bill_Manager
             dgvBills.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
+        private List<Bill> searchBills(List<Bill> fullList, double min, double max)
+        {
+            List<Bill> list = new List<Bill>();
+
+            foreach (Bill b in fullList)
+            {
+                if (b.AmountTTC >= min && b.AmountTTC <= max)
+                {
+                    list.Add(b);
+                }
+            }
+
+            return list;
+        }
+
+        private List<Bill> searchBills(List<Bill> fullList, Provider provider)
+        {
+            List<Bill> list = new List<Bill>();
+
+            foreach (Bill b in fullList)
+            {
+                if (b.Provider == provider)
+                {
+                    list.Add(b);
+                }
+            }
+
+            return list;
+        }
+
+        private List<Bill> searchBills(List<Bill> fullList, Provider provider, double min, double max)
+        {
+            List<Bill> list = new List<Bill>();
+
+            foreach (Bill b in fullList)
+            {
+                if (b.Provider.Equals(provider) && b.AmountTTC >= min && b.AmountTTC <= max)
+                {
+                    list.Add(b);
+                }
+            }
+
+            return list;
+        }
+
         /// <summary>
         /// Event handler for the search button
         /// </summary>
@@ -72,6 +119,8 @@ namespace Bill_Manager
         {
             double minAmount = (double)numMin.Value;
             double maxAmount = (double)numMax.Value;
+
+            //Errors
 
             if (minAmount < 0)
             {
@@ -86,46 +135,33 @@ namespace Bill_Manager
             //Add bills if they fit the criterias
             List<Bill> newBills = new List<Bill>();
 
-            foreach (Bill b in bills)
-            {
-                Provider selectedProvider = lstBoxProviders.SelectedItem as Provider;
+            Provider selectedProvider = lstBoxProviders.SelectedItem as Provider;
 
-                if (searchByAmount && searchByProvider)
-                {
-                    if (b.Provider.Equals(selectedProvider) && b.AmountTTC >= minAmount && b.AmountTTC <= maxAmount)
-                    {
-                        newBills.Add(b);
-                    }
-                }
-                else if(searchByAmount)
-                {
-                    if(b.AmountTTC >= minAmount && b.AmountTTC <= maxAmount)
-                    {
-                        newBills.Add(b);
-                    }
-                }
-                else if(searchByProvider)
-                {
-                    if(b.Provider.Equals(selectedProvider))
-                    {
-                        newBills.Add(b);
-                    }
-                }
+            if (searchByAmount && searchByProvider)
+            {
+                newBills = searchBills(bills, selectedProvider, minAmount, maxAmount);
             }
+            else if (searchByAmount)
+            {
+                newBills = searchBills(bills, minAmount, maxAmount);
+            }
+            else if (searchByProvider)
+            {
+                newBills = searchBills(bills, selectedProvider);
+            }
+            else
+            {
+                newBills = new List<Bill>();
+                newBills.AddRange(bills);
+            }
+
+
+            //Reset search controls
+            lstBoxProviders.ClearSelected();
+            numMin.Value = (decimal)0;
+            numMax.Value = (decimal)0;
 
             updateDataGridView(newBills);
-        }
-
-        private bool areProvidersEqual(Provider p1, Provider p2)
-        {
-            foreach(var property in p1.GetType().GetProperties())
-            {
-                var value1 = property.GetValue(p1, null);
-                var value2 = property.GetValue(p2, null);
-
-                if(value1 != value2) {  return false; }
-            }
-            return true;
         }
 
         /// <summary>
@@ -135,7 +171,11 @@ namespace Bill_Manager
         /// <param name="e"></param>
         private void cmdViewBill_Click(object sender, EventArgs e)
         {
-            DataGridViewRow t = dgvBills.Rows[dgvBills.SelectedCells[0].RowIndex];
+            if (dgvBills.Rows.Count == 0) return;
+
+            int index = dgvBills.SelectedCells[0].RowIndex;
+
+            DataGridViewRow t = dgvBills.Rows[index];
 
             Viewbill view = new Viewbill(t.DataBoundItem as Bill);
 
@@ -158,7 +198,5 @@ namespace Bill_Manager
         {
             Close();
         }
-
-
     }
 }

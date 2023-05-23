@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabBills = new System.Windows.Forms.TabPage();
             this.lblBills = new System.Windows.Forms.Label();
@@ -42,11 +44,16 @@
             this.numMin = new System.Windows.Forms.NumericUpDown();
             this.lstBoxProviders = new System.Windows.Forms.ListBox();
             this.tabStats = new System.Windows.Forms.TabPage();
+            this.cmbProviders = new System.Windows.Forms.ComboBox();
+            this.lblProvider = new System.Windows.Forms.Label();
+            this.chartAverage = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabMain.SuspendLayout();
             this.tabBills.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBills)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMin)).BeginInit();
+            this.tabStats.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartAverage)).BeginInit();
             this.SuspendLayout();
             // 
             // tabMain
@@ -187,6 +194,9 @@
             // 
             // tabStats
             // 
+            this.tabStats.Controls.Add(this.chartAverage);
+            this.tabStats.Controls.Add(this.lblProvider);
+            this.tabStats.Controls.Add(this.cmbProviders);
             this.tabStats.Location = new System.Drawing.Point(4, 22);
             this.tabStats.Name = "tabStats";
             this.tabStats.Padding = new System.Windows.Forms.Padding(3);
@@ -194,6 +204,35 @@
             this.tabStats.TabIndex = 1;
             this.tabStats.Text = "Statistiques";
             this.tabStats.UseVisualStyleBackColor = true;
+            // 
+            // cmbProviders
+            // 
+            this.cmbProviders.FormattingEnabled = true;
+            this.cmbProviders.Location = new System.Drawing.Point(16, 28);
+            this.cmbProviders.Name = "cmbProviders";
+            this.cmbProviders.Size = new System.Drawing.Size(121, 21);
+            this.cmbProviders.TabIndex = 0;
+            // 
+            // lblProvider
+            // 
+            this.lblProvider.AutoSize = true;
+            this.lblProvider.Location = new System.Drawing.Point(13, 12);
+            this.lblProvider.Name = "lblProvider";
+            this.lblProvider.Size = new System.Drawing.Size(61, 13);
+            this.lblProvider.TabIndex = 1;
+            this.lblProvider.Text = "Fournisseur";
+            // 
+            // chartAverage
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartAverage.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartAverage.Legends.Add(legend1);
+            this.chartAverage.Location = new System.Drawing.Point(16, 71);
+            this.chartAverage.Name = "chartAverage";
+            this.chartAverage.Size = new System.Drawing.Size(662, 300);
+            this.chartAverage.TabIndex = 2;
+            this.chartAverage.Text = "chart1";
             // 
             // ConsultBills
             // 
@@ -212,6 +251,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvBills)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMin)).EndInit();
+            this.tabStats.ResumeLayout(false);
+            this.tabStats.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartAverage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -232,5 +274,8 @@
         private System.Windows.Forms.Label lblMax;
         private System.Windows.Forms.Label lblMin;
         private System.Windows.Forms.Label lblProviders;
+        private System.Windows.Forms.Label lblProvider;
+        private System.Windows.Forms.ComboBox cmbProviders;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartAverage;
     }
 }
