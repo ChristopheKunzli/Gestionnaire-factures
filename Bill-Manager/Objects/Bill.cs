@@ -22,18 +22,18 @@ namespace Bill_Manager
         private User user;
 
         public int Id { get { return id; } }
-        public string BillNumber { get {  return billNumber; } }
+        public string BillNumber { get { return billNumber; } }
         public DateTime Date { get { return date; } }
         public string Currency { get { return currency; } }
-        public double AmountHT { get {  return amountHT; } }
-        public double AmountTTC { get {  return amountTTC; } }
-        public string StorageLocation { get {  return storageLocation; } }
-        public string ImageLink { get {  return imgLink; } }
+        public double AmountHT { get { return amountHT; } }
+        public double AmountTTC { get { return amountTTC; } }
+        public string StorageLocation { get { return storageLocation; } }
+        public string ImageLink { get { return imgLink; } }
         public Provider Provider { get { return provider; } }
         public Type Type { get { return type; } }
         public User User { get { return user; } }
 
-        public Bill (int id, string billNumber, DateTime date, string currency, double amountHC, double amountTTC, string storageLocation, string imgLink, Provider provider, Type type, User user)
+        public Bill(int id, string billNumber, DateTime date, string currency, double amountHC, double amountTTC, string storageLocation, string imgLink, Provider provider, Type type, User user)
         {
             this.id = id;
             this.billNumber = billNumber;

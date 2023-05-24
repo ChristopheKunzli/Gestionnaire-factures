@@ -24,8 +24,17 @@ namespace Bill_Manager
             this.user = user;
         }
 
+        /// <summary>
+        /// Contains the special characters
+        /// At least one of these character must be in the password
+        /// </summary>
         private readonly HashSet<char> SPECIAL_CHARS = new HashSet<char>("#$%&()*+-<=>?@".ToCharArray());
 
+        /// <summary>
+        /// Event handler for the confirm button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdConfirm_Click(object sender, EventArgs e)
         {
             string password = txtNewPassword.Text;
@@ -77,6 +86,11 @@ namespace Bill_Manager
             return new Regex("^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\\d)(?=.*[#$%&()*+<=>?@]).*$").IsMatch(password);
         }
 
+        /// <summary>
+        /// Event handler for the cancel button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;

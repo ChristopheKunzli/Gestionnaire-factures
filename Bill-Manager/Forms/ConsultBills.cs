@@ -88,16 +88,9 @@ namespace Bill_Manager
             {
                 sum += bill.AmountTTC;
 
-                List<double> test = new List<double>();
-                foreach (Bill b in bills)
-                {
-                    test.Add(b.AmountTTC);
-                }
-
-                if (test.Count > 0)
-                    average = Enumerable.Average(test);
-
                 bills.Add(bill);
+
+                average = sum / bills.Count;
             }
         }
 

@@ -17,6 +17,11 @@ namespace Bill_Manager
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Event handler for the add user button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdAdd_Click(object sender, EventArgs e)
         {
             //Errors
@@ -49,6 +54,11 @@ namespace Bill_Manager
             Close();
         }
 
+        /// <summary>
+        /// Event handler for the cancel button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdCancel_Click(object sender, EventArgs e)
         {
             Close();

@@ -20,6 +20,11 @@ namespace Bill_Manager
             this.user = user;
         }
 
+        /// <summary>
+        /// Determine which button was clicked and which form to open next or close the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void nextAction(object sender, EventArgs e)
         {
             Button action = (Button)sender;
@@ -66,6 +71,12 @@ namespace Bill_Manager
             }
         }
 
+        /// <summary>
+        /// Event handler for the form load event.
+        /// Writes the user's name on the form and center it horizontally
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ChooseAction_Load(object sender, EventArgs e)
         {
             //Display the user's name on the form

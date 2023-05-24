@@ -17,6 +17,11 @@ namespace Bill_Manager
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Event handler for the add provider button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdAdd_Click(object sender, EventArgs e)
         {
             //Extract data from form
@@ -29,7 +34,7 @@ namespace Bill_Manager
             string zip = txtZip.Text;
 
             //Check that mandatory fields are not empty
-            if(name == "" || road == "" || city == "" || zip == "" || number == 0)
+            if (name == "" || road == "" || city == "" || zip == "" || number == 0)
             {
                 MessageBox.Show("Veuillez remplir tous les champs obligatoires (*)");
             }
@@ -37,11 +42,16 @@ namespace Bill_Manager
             //Send the provider to DB via connection class
             ConnectionDB connection = new ConnectionDB();
             connection.AddProvider(new Provider(name, email, phone, road, number, city, zip));
-            
+
             //close form
             Close();
         }
 
+        /// <summary>
+        /// Event handler for the cancel button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdCancel_Click(object sender, EventArgs e)
         {
             Close();

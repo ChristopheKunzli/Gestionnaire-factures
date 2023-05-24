@@ -122,7 +122,7 @@ namespace Bill_Manager
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message);
                 }
                 finally
                 {
@@ -170,7 +170,7 @@ namespace Bill_Manager
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message);
                 }
                 finally
                 {
@@ -252,7 +252,7 @@ namespace Bill_Manager
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message);
                 }
                 finally
                 {
@@ -296,7 +296,7 @@ namespace Bill_Manager
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message);
                 }
                 finally
                 {
@@ -333,7 +333,7 @@ namespace Bill_Manager
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message);
                 }
                 finally
                 {
@@ -372,7 +372,7 @@ namespace Bill_Manager
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message);
                 }
                 finally
                 {
@@ -397,7 +397,7 @@ namespace Bill_Manager
             {
                 try
                 {
-                    string cmdText = 
+                    string cmdText =
                         "SELECT * FROM bills " +
                         "WHERE User_id=@id " +
                         "ORDER BY date";
@@ -437,9 +437,9 @@ namespace Bill_Manager
                             //Get the type
                             Type type = null;
 
-                            foreach(Type t in types)
+                            foreach (Type t in types)
                             {
-                                if(t.Id ==  type_id)
+                                if (t.Id == type_id)
                                 {
                                     type = t;
                                 }
@@ -455,7 +455,7 @@ namespace Bill_Manager
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message);
                 }
                 finally
                 {

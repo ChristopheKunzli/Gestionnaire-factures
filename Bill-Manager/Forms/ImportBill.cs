@@ -41,6 +41,11 @@ namespace Bill_Manager
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Event handler for the form load event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ImportBill_Load(object sender, EventArgs e)
         {
             ConnectionDB connection = new ConnectionDB();
@@ -65,11 +70,21 @@ namespace Bill_Manager
             cmbType.SelectedIndex = -1;
         }
 
+        /// <summary>
+        /// Format a string containing an amount to prevent some format exception when converting to double
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <returns></returns>
         private string formatAmount(string amount)
         {
             return amount.Replace(",", ".");
         }
 
+        /// <summary>
+        /// Event handler for the add bill button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdAdd_Click(object sender, EventArgs e)
         {
             //Verify that all mandatory controls contain a value
@@ -139,6 +154,11 @@ namespace Bill_Manager
             return destinationFilePath;
         }
 
+        /// <summary>
+        /// Event handler for the select file button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdFile_Click(object sender, EventArgs e)
         {
             //Open the file dialog
@@ -161,6 +181,11 @@ namespace Bill_Manager
             }
         }
 
+        /// <summary>
+        /// Event handler for the cancel button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdCancel_Click(object sender, EventArgs e)
         {
             Close();

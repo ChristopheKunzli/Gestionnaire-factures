@@ -22,6 +22,9 @@ namespace Bill_Manager
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Tries to fetch the user from the DB using credentials entered in the form
+        /// </summary>
         private void attemptConnection()
         {
             string mail = txtEmail.Text;
@@ -56,7 +59,7 @@ namespace Bill_Manager
                 return;
             }
 
-            if(!User.HasChangedPassword)
+            if (!User.HasChangedPassword)
             {
                 Form changePass = new ChangePassword(user);
 
@@ -86,11 +89,21 @@ namespace Bill_Manager
             Close();
         }
 
+        /// <summary>
+        /// Event handler for the login button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdLogin_Click(object sender, EventArgs e)
         {
             attemptConnection();
         }
 
+        /// <summary>
+        /// Allow the user to attempt login by pressing enter while in password textbox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtPassword_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

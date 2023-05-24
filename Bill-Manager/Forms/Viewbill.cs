@@ -20,13 +20,6 @@ namespace Bill_Manager
             this.bill = bill;
 
             this.Text += "numéro : " + bill.BillNumber;
-
-            /*
-            foreach(var property in bill.GetType().GetProperties())
-            {
-                MessageBox.Show(property.Name + " " + property.GetValue(bill, null).ToString());
-            }
-            */
         }
 
         /// <summary>
@@ -62,7 +55,5 @@ namespace Bill_Manager
         {
             Close();
         }
-
-        
     }
 }
