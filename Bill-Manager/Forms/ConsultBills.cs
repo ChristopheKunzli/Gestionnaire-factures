@@ -273,7 +273,7 @@ namespace Bill_Manager
             bool searchByProvider = lstBoxProviders.SelectedIndex >= 0;
 
             //Add bills if they fit the criterias
-            List<Bill> newBills = new List<Bill>();
+            List<Bill> newBills;
 
             Provider selectedProvider = lstBoxProviders.SelectedItem as Provider;
 
@@ -297,8 +297,8 @@ namespace Bill_Manager
 
             //Reset search controls
             lstBoxProviders.ClearSelected();
-            numMin.Value = (decimal)0;
-            numMax.Value = (decimal)0;
+            numMin.Value = 0;
+            numMax.Value = 0;
 
             updateDataGridView(newBills);
         }

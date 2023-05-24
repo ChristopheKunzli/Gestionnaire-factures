@@ -30,7 +30,7 @@ namespace Bill_Manager
         private void Viewbill_Load(object sender, EventArgs e)
         {
             txtNum.Text = bill.BillNumber;
-            txtDate.Text = bill.Date.ToString();
+            txtDate.Text = bill.Date.ToShortDateString();
             txtHT.Text = bill.AmountHT.ToString() + " " + bill.Currency;
             txtTTC.Text = bill.AmountTTC.ToString() + " " + bill.Currency;
             rtxtStorage.Text = bill.StorageLocation;
