@@ -169,7 +169,10 @@ namespace Bill_Manager
 
             dgvBills.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
-            dgvBills.Rows[0].Selected = false;
+            if (dgvBills.Rows.Count > 0)
+            {
+                dgvBills.Rows[0].Selected = false;
+            }
         }
 
         /// <summary>
@@ -311,13 +314,16 @@ namespace Bill_Manager
         }
 
         /// <summary>
-        /// Event handler for the view button
+        /// Opens a new form to display a bill's information
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cmdViewBill_Click(object sender, EventArgs e)
+        private void openBill()
         {
-            if (dgvBills.Rows.Count == 0 || dgvBills.SelectedRows.Count == 0) return;
+            //Check that a bill is selected
+            if (dgvBills.Rows.Count == 0 || dgvBills.SelectedCells.Count == 0)
+            {
+                MessageBox.Show("Veuillez sélectionner une facture dans la liste");
+                return;
+            }
 
             //Find which row is selected
             int index = dgvBills.SelectedCells[0].RowIndex;
@@ -334,6 +340,27 @@ namespace Bill_Manager
 
             view.Show();
             this.Hide();
+        }
+
+        /// <summary>
+        /// Event handler for the view button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdViewBill_Click(object sender, EventArgs e)
+        {
+            openBill();
+        }
+
+        /// <summary>
+        /// Event handler for a double click on the data grid.
+        /// Allows user to double click to open bill
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvBills_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            openBill();
         }
 
         /// <summary>
@@ -355,6 +382,16 @@ namespace Bill_Manager
         {
             Provider selectedProvider = cmbProviders.SelectedItem as Provider;
             reloadChart(allBills, selectedProvider);
+        }
+
+        /// <summary>
+        /// Event handler for the chart reset button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdAllProviders_Click(object sender, EventArgs e)
+        {
+            reloadChart(allBills);
         }
     }
 }

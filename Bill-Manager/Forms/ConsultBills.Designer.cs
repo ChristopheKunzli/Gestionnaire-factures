@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabBills = new System.Windows.Forms.TabPage();
             this.lblBills = new System.Windows.Forms.Label();
@@ -47,6 +47,7 @@
             this.chartAverage = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lblProvider = new System.Windows.Forms.Label();
             this.cmbProviders = new System.Windows.Forms.ComboBox();
+            this.cmdAllProviders = new System.Windows.Forms.Button();
             this.tabMain.SuspendLayout();
             this.tabBills.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBills)).BeginInit();
@@ -134,6 +135,7 @@
             this.dgvBills.Name = "dgvBills";
             this.dgvBills.Size = new System.Drawing.Size(649, 368);
             this.dgvBills.TabIndex = 6;
+            this.dgvBills.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvBills_CellMouseDoubleClick);
             // 
             // cmdQuit
             // 
@@ -194,6 +196,7 @@
             // 
             // tabStats
             // 
+            this.tabStats.Controls.Add(this.cmdAllProviders);
             this.tabStats.Controls.Add(this.chartAverage);
             this.tabStats.Controls.Add(this.lblProvider);
             this.tabStats.Controls.Add(this.cmbProviders);
@@ -207,10 +210,10 @@
             // 
             // chartAverage
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartAverage.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartAverage.Legends.Add(legend1);
+            chartArea4.Name = "ChartArea1";
+            this.chartAverage.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chartAverage.Legends.Add(legend4);
             this.chartAverage.Location = new System.Drawing.Point(16, 46);
             this.chartAverage.Name = "chartAverage";
             this.chartAverage.Size = new System.Drawing.Size(1060, 347);
@@ -235,6 +238,16 @@
             this.cmbProviders.Size = new System.Drawing.Size(458, 21);
             this.cmbProviders.TabIndex = 0;
             this.cmbProviders.SelectedIndexChanged += new System.EventHandler(this.cmbProviders_SelectedIndexChanged);
+            // 
+            // cmdAllProviders
+            // 
+            this.cmdAllProviders.Location = new System.Drawing.Point(505, 17);
+            this.cmdAllProviders.Name = "cmdAllProviders";
+            this.cmdAllProviders.Size = new System.Drawing.Size(153, 23);
+            this.cmdAllProviders.TabIndex = 3;
+            this.cmdAllProviders.Text = "Stats de tous les fournisseurs";
+            this.cmdAllProviders.UseVisualStyleBackColor = true;
+            this.cmdAllProviders.Click += new System.EventHandler(this.cmdAllProviders_Click);
             // 
             // ConsultBills
             // 
@@ -279,5 +292,6 @@
         private System.Windows.Forms.Label lblProvider;
         private System.Windows.Forms.ComboBox cmbProviders;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartAverage;
+        private System.Windows.Forms.Button cmdAllProviders;
     }
 }
