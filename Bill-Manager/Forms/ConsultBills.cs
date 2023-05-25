@@ -161,7 +161,15 @@ namespace Bill_Manager
                 dgvBills.Columns[i].Visible = columnIndexToShow.Contains(i);
             }
 
+            dgvBills.Columns[1].HeaderText = "Numéro de facture";
+            dgvBills.Columns[2].HeaderText = "Date";
+            dgvBills.Columns[3].HeaderText = "Devise";
+            dgvBills.Columns[5].HeaderText = "Montant TTC";
+            dgvBills.Columns[8].HeaderText = "Fournisseur";
+
             dgvBills.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            dgvBills.Rows[0].Selected = false;
         }
 
         /// <summary>
@@ -309,7 +317,7 @@ namespace Bill_Manager
         /// <param name="e"></param>
         private void cmdViewBill_Click(object sender, EventArgs e)
         {
-            if (dgvBills.Rows.Count == 0) return;
+            if (dgvBills.Rows.Count == 0 || dgvBills.SelectedRows.Count == 0) return;
 
             //Find which row is selected
             int index = dgvBills.SelectedCells[0].RowIndex;

@@ -52,7 +52,7 @@ namespace Bill_Manager
 
         public override string ToString()
         {
-            return $"{name} : {city}";
+            return $"{name}";
         }
     }
 }
