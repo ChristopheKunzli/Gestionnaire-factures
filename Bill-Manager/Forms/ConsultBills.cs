@@ -56,10 +56,9 @@ namespace Bill_Manager
         private class BillGroup
         {
             private List<Bill> bills = new List<Bill>();
+            private int year;
             private double sum = 0;
             private double average = 0;
-            private int year;
-
             public List<Bill> Bills { get { return bills; } }
             public double Sum { get { return sum; } }
             public double Average { get { return average; } }
@@ -86,16 +85,17 @@ namespace Bill_Manager
 
             public void InsertBill(Bill bill)
             {
-                sum += bill.AmountTTC;
-
+                //Add the bill to the list
                 bills.Add(bill);
 
+                //Update sum and average
+                sum += bill.AmountTTC;
                 average = sum / bills.Count;
             }
         }
 
         /// <summary>
-        /// Load the chart with every bill
+        /// Reloads the chart with a list of bills
         /// </summary>
         private void reloadChart(List<Bill> bills, string title = "Tous les fournisseurs")
         {
@@ -141,7 +141,7 @@ namespace Bill_Manager
         /// </summary>
         /// <param name="provider"></param>
         /// <exception cref="NotImplementedException"></exception>
-        private void loadChart(List<Bill> bills, Provider provider)
+        private void reloadChart(List<Bill> bills, Provider provider)
         {
             reloadChart(searchBills(bills, provider), provider.Name);
         }
@@ -291,8 +291,7 @@ namespace Bill_Manager
             }
             else
             {
-                newBills = new List<Bill>();
-                newBills.AddRange(allBills);
+                newBills = new List<Bill>(allBills);
             }
 
             //Reset search controls
@@ -312,12 +311,14 @@ namespace Bill_Manager
         {
             if (dgvBills.Rows.Count == 0) return;
 
+            //Find which row is selected
             int index = dgvBills.SelectedCells[0].RowIndex;
-
             DataGridViewRow t = dgvBills.Rows[index];
 
+            //Send the item in the selected row to new form
             Viewbill view = new Viewbill(t.DataBoundItem as Bill);
 
+            //Reopen current form when new form closes
             view.FormClosing += delegate
             {
                 this.Show();
@@ -345,7 +346,7 @@ namespace Bill_Manager
         private void cmbProviders_SelectedIndexChanged(object sender, EventArgs e)
         {
             Provider selectedProvider = cmbProviders.SelectedItem as Provider;
-            loadChart(searchBills(allBills, selectedProvider), selectedProvider);
+            reloadChart(allBills, selectedProvider);
         }
     }
 }
